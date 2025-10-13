@@ -21,13 +21,20 @@ class TaskServiceTest {
 
     @Test
     public void tasks_are_stored_in_the_database_with_the_current_timestamp() {
-        var now = Instant.now();
+        var before = Instant.now(); // guardar o tempo antes de criar
         var due = LocalDate.of(2025, 2, 7);
+
         taskService.createTask("Do this", due);
+
+        var after = Instant.now(); // guardar o tempo depois de criar
+
         assertThat(taskService.list(PageRequest.ofSize(1))).singleElement()
-                .matches(task -> task.getDescription().equals("Do this") && due.equals(task.getDueDate())
-                        && task.getCreationDate().isAfter(now));
+                .matches(task -> task.getDescription().equals("Do this")
+                        && due.equals(task.getDueDate())
+                        && !task.getCreationDate().isBefore(before)
+                        && !task.getCreationDate().isAfter(after));
     }
+
 
     @Test
     public void tasks_are_validated_before_they_are_stored() {
