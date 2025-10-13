@@ -60,6 +60,10 @@
             <type>pom</type>
         </dependency>
         <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>
             <version>3.5.2</version>
