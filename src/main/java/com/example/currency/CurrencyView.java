@@ -55,5 +55,7 @@ public class CurrencyView extends VerticalLayout {
         // Adicionar tudo à interface
         add(amountField, fromCurrency, toCurrency, convertButton);
     }
+
+    // trigger sonarcloud workflow
 }
 
